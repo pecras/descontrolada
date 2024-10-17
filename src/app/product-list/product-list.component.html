@@ -1,0 +1,63 @@
+<div class="bg-white p-6 rounded-lg shadow-md">
+  <h2 class="text-2xl font-bold mb-4">Lista de Produtos</h2>
+  <div class="overflow-x-auto">
+    <table class="w-full border-collapse">
+      <thead>
+        <tr class="bg-gray-100">
+          <th class="p-2 text-left">Nome</th>
+          <th class="p-2 text-left">Preço</th>
+          <th class="p-2 text-left">Tipo</th>
+          <th class="p-2 text-left">Quantidade</th>
+          <th class="p-2 text-left">Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let product of displayedProducts" class="border-b hover:bg-gray-50">
+          <td class="p-2">{{product.name}}</td>
+          <td class="p-2">{{product.price | currency:'BRL'}}</td>
+          <td class="p-2">{{product.type === 'organic' ? 'Orgânico' : 'Não orgânico'}}</td>
+          <td class="p-2">{{product.quantity}}</td>
+          <td class="p-2">
+            <button (click)="openEditModal(product)" class="mr-2 text-blue-500 hover:underline">Editar</button>
+            <button (click)="openDeleteModal(product)" class="text-red-500 hover:underline">Excluir</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="mt-4 flex justify-between items-center">
+    <span>
+      Mostrando {{startIndex + 1}} a {{endIndex}} de {{totalItems}} itens
+    </span>
+    <div class="flex space-x-2">
+      <button 
+        (click)="previousPage()" 
+        [disabled]="currentPage === 1"
+        class="px-4 py-2 border rounded-md hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed"
+      >
+        Anterior
+      </button>
+      <button 
+        (click)="nextPage()" 
+        [disabled]="currentPage === totalPages"
+        class="px-4 py-2 border rounded-md hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed"
+      >
+        Próxima
+      </button>
+    </div>
+  </div>
+</div>
+
+<app-edit-product-modal
+  [isOpen]="isEditModalOpen"
+  [product]="selectedProduct"
+  (save)="saveEditedProduct($event)"
+  (cancel)="closeEditModal()"
+></app-edit-product-modal>
+
+<app-delete-product-modal
+  [isOpen]="isDeleteModalOpen"
+  [product]="selectedProduct"
+  (confirm)="confirmDelete()"
+  (cancel)="closeDeleteModal()"
+></app-delete-product-modal>

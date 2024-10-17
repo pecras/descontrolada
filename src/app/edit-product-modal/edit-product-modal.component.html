@@ -1,0 +1,30 @@
+<div *ngIf="isOpen" class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full flex justify-center items-center">
+    <div class="bg-white p-8 rounded-lg shadow-xl w-96">
+      <h2 class="text-2xl font-bold mb-4">Editar Produto</h2>
+      <form (ngSubmit)="onSubmit()">
+        <div class="mb-4">
+          <label for="name" class="block text-sm font-medium text-gray-700">Nome</label>
+          <input type="text" id="name" name="name" [(ngModel)]="editedProduct.name" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+        </div>
+        <div class="mb-4">
+          <label for="price" class="block text-sm font-medium text-gray-700">Preço</label>
+          <input type="number" id="price" name="price" [(ngModel)]="editedProduct.price" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+        </div>
+        <div class="mb-4">
+          <label for="type" class="block text-sm font-medium text-gray-700">Tipo</label>
+          <select id="type" name="type" [(ngModel)]="editedProduct.type" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+            <option value="organic">Orgânico</option>
+            <option value="non-organic">Não orgânico</option>
+          </select>
+        </div>
+        <div class="mb-4">
+          <label for="quantity" class="block text-sm font-medium text-gray-700">Quantidade</label>
+          <input type="number" id="quantity" name="quantity" [(ngModel)]="editedProduct.quantity" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+        </div>
+        <div class="flex justify-end space-x-2">
+          <button type="button" (click)="onCancel()" class="px-4 py-2 bg-gray-200 text-gray-800 rounded-md hover:bg-gray-300">Cancelar</button>
+          <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600">Salvar</button>
+        </div>
+      </form>
+    </div>
+  </div>

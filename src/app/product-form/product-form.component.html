@@ -1,0 +1,45 @@
+<form (ngSubmit)="onSubmit()" #productForm="ngForm" class="bg-white opacity-90 p-6 rounded-lg shadow-md">
+  <div class="w-[100%] text-xs flex text-center justify-center items-center">
+    <h2 class=" text-black  underline mb-4">Cadastro de Produtos</h2>
+  </div>
+    <mat-form-field appearance="fill"  class="w-full mb-4 ">
+      <mat-label>Nome</mat-label>
+      <input matInput [(ngModel)]="product.name" name="name"  required>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="w-full mb-4">
+      <mat-label>Preço de Venda</mat-label>
+      <input matInput type="text"
+       mask="separator.2" [thousandSeparator]="'.'" [decimalMarker]="','"
+       prefix="R$"
+       [showMaskTyped]="false" 
+       [dropSpecialCharacters]="true" 
+       [(ngModel)]="product.price" name="price" required>
+   
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="w-full mb-4">
+      <mat-label>Descrição</mat-label>
+      <textarea matInput [(ngModel)]="product.description" name="description" required></textarea>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="w-full mb-4">
+      <mat-label>Quantidade</mat-label>
+      <input matInput type="number" [(ngModel)]="product.quantity" name="quantity" required>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="w-full mb-4">
+      <mat-label>Tipo</mat-label>
+      <mat-select [(ngModel)]="product.type" name="type" required>
+        <mat-option value="organic">Orgânico</mat-option>
+        <mat-option value="non-organic">Não orgânico</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    
+<div class="w-[100%] flex justify-center align-middle items-center">
+    <button  type="submit" class="bg-slate-800 text-orange-200 w-[80%] text-2xl border-red-600 border-2 shadow-md rounded-lg  p-4" [disabled]="!productForm.form.valid">
+      Cadastrar Produto
+    </button>
+  </div>
+  </form>
